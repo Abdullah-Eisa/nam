@@ -105,7 +105,9 @@ class Trainer:
         # Forward pass from the model.
 #         features = features.unsqueeze(1)
         predictions, fnn_out = model(features)
-        targets=targets.squeeze()
+#         targets=targets.squeeze()
+        predictions = predictions.unsqueeze(1)
+
         loss = self.criterion(predictions, targets, weights, fnn_out, model)
         self.update_metric(metric, predictions, targets, weights)
 
@@ -144,7 +146,8 @@ class Trainer:
         # Forward pass from the model.
 #         features = features.unsqueeze(1)
         predictions, fnn_out = model(features)
-        targets=targets.squeeze()
+#         targets=targets.squeeze()
+        predictions = predictions.unsqueeze(1)
         # Calculates loss on mini-batch.
         loss = self.criterion(predictions, targets, weights, fnn_out, model)
         self.update_metric(metric, predictions, targets, weights)
