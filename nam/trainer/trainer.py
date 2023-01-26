@@ -103,9 +103,9 @@ class Trainer:
         optimizer.zero_grad()
 
         # Forward pass from the model.
-        features = features.unsqueeze(1)
+#         features = features.unsqueeze(1)
         predictions, fnn_out = model(features)
-
+        targets=targets.squeeze()
         loss = self.criterion(predictions, targets, weights, fnn_out, model)
         self.update_metric(metric, predictions, targets, weights)
 
@@ -142,9 +142,9 @@ class Trainer:
         features, targets, weights = [t.to(self.device) for t in batch]
 
         # Forward pass from the model.
-        features = features.unsqueeze(1)
+#         features = features.unsqueeze(1)
         predictions, fnn_out = model(features)
-
+        targets=targets.squeeze()
         # Calculates loss on mini-batch.
         loss = self.criterion(predictions, targets, weights, fnn_out, model)
         self.update_metric(metric, predictions, targets, weights)
